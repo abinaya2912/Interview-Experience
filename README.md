@@ -11,13 +11,12 @@ This system helps users prepare for interviews by browsing real-world interview 
 - 🔍 Search and filter experiences by company, role, rounds, and difficulty level.
 - 📋 Admin panel to manage submitted experiences (edit/delete).
 - 🔒 User authentication for secure submission and access.
-- 📊 Analytics dashboard (for admin) to monitor popular companies and submission stats.
 
 ## 🛠️ Tech Stack
 
 ### Frontend:
 - React.js (or HTML/CSS/JS for basic version)
-- Tailwind CSS / Bootstrap for styling
+- CSS / Bootstrap for styling
 
 ### Backend:
 - Node.js + Express.js
@@ -29,3 +28,10 @@ This system helps users prepare for interviews by browsing real-world interview 
 - JWT (JSON Web Token) / bcrypt for password hashing
 
 ## 🚀 Getting Started
+
+### Installation Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/interview-experience-management.git
+   cd interview-experience-management
