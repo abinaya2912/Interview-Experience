@@ -1,4 +1,3 @@
-// models/Experience.js
 const mongoose = require("mongoose");
 
 const experienceSchema = new mongoose.Schema({
@@ -11,6 +10,7 @@ const experienceSchema = new mongoose.Schema({
   clearedCount: Number,
   descriptions: [String],
   status: String,
+  date: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("Experience", experienceSchema);

@@ -1,4 +1,3 @@
-// ViewExperiences.jsx
 import React, { useState, useEffect } from "react";
 
 function ViewExperiences() {
@@ -6,39 +5,42 @@ function ViewExperiences() {
 
   useEffect(() => {
     const fetchExperiences = async () => {
-      const response = await fetch("/api/get-experiences");
-      const data = await response.json();
-      setExperiences(data);
+      try {
+        const response = await fetch("/api/get-experiences");
+        const data = await response.json();
+        setExperiences(data);
+      } catch (error) {
+        console.error("Error fetching experiences:", error);
+      }
     };
     fetchExperiences();
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold mb-4">Interview Experiences</h2>
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-3xl font-bold mb-6 text-center">Interview Experiences</h2>
         {experiences.length === 0 ? (
-          <p>No experiences added yet.</p>
+          <p className="text-center text-gray-600">No experiences shared yet.</p>
         ) : (
-          <ul>
-            {experiences.map((exp, index) => (
-              <li key={index} className="mb-4 p-4 bg-gray-50 rounded-lg">
-                <h3 className="text-xl font-semibold">{exp.companyName}</h3>
-                <p><strong>Role:</strong> {exp.role}</p>
-                <p><strong>Interview Date:</strong> {new Date(exp.interviewDate).toLocaleDateString()}</p>
-                <p><strong>Difficulty:</strong> {exp.difficultyLevel}</p>
-                <p><strong>Outcome:</strong> {exp.status}</p>
-                <p><strong>Total Rounds:</strong> {exp.totalCount}</p>
-                <p><strong>Rounds Cleared:</strong> {exp.clearedCount}</p>
-                <p><strong>Details:</strong></p>
-                <ul>
-                  {exp.descriptions.map((desc, idx) => (
-                    <li key={idx}>{desc}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
+          experiences.map((exp, index) => (
+            <div key={index} className="bg-white shadow-md rounded-lg p-6 mb-4">
+              <h3 className="text-xl font-semibold">{exp.name} - {exp.companyName}</h3>
+              <p><strong>Role:</strong> {exp.role}</p>
+              <p><strong>Date:</strong> {exp.interviewDate}</p>
+              <p><strong>Difficulty:</strong> {exp.difficultyLevel}</p>
+              <p><strong>Rounds Cleared:</strong> {exp.clearedCount} / {exp.totalCount}</p>
+              <p><strong>Status:</strong> {exp.status}</p>
+              <div className="mt-3">
+                {exp.descriptions.map((desc, i) => (
+                  <div key={i} className="bg-gray-50 p-3 rounded mb-2">
+                    <strong>Round {i + 1}:</strong>
+                    <p>{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>

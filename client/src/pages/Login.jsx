@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,7 +21,8 @@ const Login = () => {
     const data = await res.json();
     alert(data.message);
     if (data.message === "Login successful") {
-      navigate("/homee"); // replace with your actual route
+      login();
+      navigate("/homee");
     }
   };
 
