@@ -17,8 +17,8 @@ function Header() {
         <nav className="hidden sm:flex space-x-4 md:space-x-6 font-medium">
           {[
             { to: '/', label: 'Home' },
-            { to: '/add-experiences', label: 'Add Experiences' },
-            { to: '/view', label: 'View' },
+            { to: '/add-experiences', label: 'AddExperience' },
+            { to: '/view', label: 'ViewExperiences' },
             { to: '/login', label: 'Login' },
           ].map((item, index) => (
             <Link
