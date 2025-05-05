@@ -1,19 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
+
 
 function Header() {
   return (
-    <header className="bg-blue-600 text-white shadow-md w-full">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
-        {/* Logo (Left side) */}
-        <h1 className="text-2xl font-bold mr-auto">Prepnest</h1>
-        
+    <header className="bg-blue-600 text-white shadow-md w-full sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-10 py-4">
+        {/* Logo + Brand */}
+        <Link to="/" className="flex items-center space-x-2">
+          <span className="text-2xl md:text-3xl font-extrabold tracking-tight">
+            Prepnest
+          </span>
+        </Link>
+
         {/* Navigation */}
-        <nav className="flex space-x-8 font-medium">
-          <Link to="/" className="hover:text-gray-300">Home</Link>
-          <Link to="/add-experiences" className="hover:text-gray-300">Add Experiences</Link>
-          <Link to="/view" className="hover:text-gray-300">View</Link>
-          <Link to="/login" className="hover:text-gray-300">Login</Link>
+        <nav className="hidden sm:flex space-x-4 md:space-x-6 font-medium">
+          {[
+            { to: '/', label: 'Home' },
+            { to: '/add-experiences', label: 'Add Experiences' },
+            { to: '/view', label: 'View' },
+            { to: '/login', label: 'Login' },
+          ].map((item, index) => (
+            <Link
+              key={index}
+              to={item.to}
+              className="px-4 py-2 rounded-lg hover:bg-blue-500 transform transition duration-300 hover:-translate-y-1"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
       </div>
     </header>
